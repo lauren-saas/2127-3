@@ -57,6 +57,8 @@
 <img id="redghost" class= "hide" src="https://i.pinimg.com/originals/90/d2/e3/90d2e3ff2856032d36fcc7dc49334191.png"/>
 
 <img id="maze" class="hide" src="https://www.cs.ubc.ca/~acm-web/practice/2014-11-05/judge/data/mcpc2014/maze/fig_01.png"/>
+
+<img id="maze2" class="hide" src="https://www.dclibrary.org/sites/default/files/styles/huge__800_x_800_/public/maze.png?itok=nDZ1z5QV"/>
   
   
       <script id="rendered-js" >
@@ -87,7 +89,16 @@ function makeBot() {
 function doResetBots() {
   console.log("resetBots");
   bots = [];
-  for (let i = 0; i < 1; i++) {
+  let bot0 = {};
+  bot0.x = 60;
+  bot0.y = 10;
+  bot0.r = 10;
+  bot0.dx = 0
+  bot0.dy = 0;
+  bot0.theta = 0;
+  bots.push(bot0);
+  
+  for (let i = 0; i < 0; i++) {
     bot = makeBot();
     bots.push(bot);
   }
@@ -153,8 +164,8 @@ function moveBot(bot) {
 function moveBots() {
   checkCollide();
   ctx.clearRect(0, 0, c.width, c.height);
-  const maze = document.getElementById("maze");
-  ctx.drawImage(maze, 0, 0,c.width,c.height);
+  const maze2 = document.getElementById("maze2");
+  ctx.drawImage(maze2, 0, 0,c.width,c.height);
   for (let i = 0; i < bots.length; i++) {
     moveBot(bots[i]);
   }
@@ -190,7 +201,7 @@ setInterval(moveBots, 100);
 
 function dokeydown(e) {
   console.log(e.key);
-  let stepSize = 2;
+  let stepSize = 1;
   if (e.key == "ArrowUp") {
     bots[0].dy = bots[0].dy + stepSize;
   }
@@ -204,7 +215,7 @@ function dokeydown(e) {
   }
 
   if (e.key == "ArrowDown") {
-    bots[0].dy = bots[0].dy + stepSize;
+    bots[0].dy = bots[0].dy - stepSize;
   }
   //Stop the Bot
   if (e.key == " ") {
@@ -225,4 +236,3 @@ document.getElementById("resetBots").addEventListener("click", doResetBots);
 </body>
 
 </html>
- 
